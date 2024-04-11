@@ -33,10 +33,10 @@ return new class extends Migration
 
         // Create 'articles' table
         Schema::create('articles', function (Blueprint $table) {
-            $table->increments('id_article');
-            $table->string('name'); 
-            $table->string('content'); 
-            $table->timestamps(); 
+            $table->id();
+            $table->string('name');
+            $table->text('content'); 
+            $table->timestamps();
         });
 
         // Create 'roles' table
@@ -63,9 +63,9 @@ return new class extends Migration
         });
 
         // Create 'links' table
-        Schema::create('twitch', function (Blueprint $table) {
-            $table->increments('id_twitch'); 
-            $table->string('name')->unique(); 
+        Schema::create('links', function (Blueprint $table) {
+            $table->increments('id_link'); 
+            $table->string('url')->unique(); 
             $table->timestamps(); 
         });
 
