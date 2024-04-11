@@ -27,6 +27,16 @@ class TypeController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+
+    public function createType(Request $request) {
+        $name = $request->input('name');
+        try {
+            DB::statement('CALL createType(?)', [$name]);
+            return response()->json(['message' => 'Type created successfully'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
 }
 
 
