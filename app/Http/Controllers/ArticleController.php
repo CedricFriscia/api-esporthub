@@ -27,6 +27,19 @@ class ArticleController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+
+
+    public function createArticle(Request $request) {
+        $name = $request->input('name');
+        $content = $request->input('content');
+        try {
+            DB::statement('CALL createArticle(?, ?)', [$name, $content]);
+            return response()->json(['message' => 'Article created successfully'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+    
     
     
 }

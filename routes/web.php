@@ -30,7 +30,8 @@ Route::get('/articles', [ArticleController::class, 'getAllArticles']);
 Route::get('/article', [ArticleController::class, 'getOneArticle']); 
 
 Route::get('/pages', [PageController::class, 'getAllPages']);
-Route::get('/page', [PageController::class, 'getOnePage']); // NEED FIX 
+Route::get('/page', [PageController::class, 'getOnePage']); 
+Route::post('/page/create', [PageController::class, 'createPage']); 
 
 Route::get('/users', [UserController::class, 'getAllUsers']);
 Route::get('/user', [UserController::class, 'getOneUser']);

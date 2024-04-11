@@ -27,4 +27,14 @@ class LinkController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+
+    public function createLink(Request $request) {
+        $url = $request->input('url');
+        try {
+            DB::statement('CALL createLink(?)', [$url]);
+            return response()->json(['message' => 'Link created successfully'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
 }
