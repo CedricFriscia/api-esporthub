@@ -43,13 +43,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/type', [TypeController::class, 'getOneType']);
     Route::post('/type/create', [TypeController::class, 'createType']); 
 
-    Route::get('/rights', [RightController::class, 'getAllRights']);
-    Route::get('/right', [RightController::class, 'getOneRight']);
-    Route::post('/right/create', [RightController::class, 'createRight']); 
-
-    Route::get('/roles', [RoleController::class, 'getAllRoles']);
-    Route::get('/role', [RoleController::class, 'getOneRole']);
-    Route::post('/role/create', [RoleController::class, 'createRole']); 
+    
 
     Route::get('/links', [LinkController::class, 'getAllLinks']);
     Route::get('/link', [LinkController::class, 'getOneLink']);
@@ -63,7 +57,13 @@ Route::post('login',[AuthController::class,'login']);
 Route::post('logout',[AuthController::class,'logout']);
 
 
+Route::get('/rights', [RightController::class, 'getAllRights']);
+    Route::get('/right', [RightController::class, 'getOneRight']);
+    Route::post('/right/create', [RightController::class, 'createRight']); 
 
+    Route::get('/roles', [RoleController::class, 'getAllRoles']);
+    Route::get('/role', [RoleController::class, 'getOneRole']);
+    Route::post('/role/create', [RoleController::class, 'createRole']); 
 
 
 

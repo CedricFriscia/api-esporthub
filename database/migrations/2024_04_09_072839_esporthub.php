@@ -11,17 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::dropIfExists('user_articles');
-        Schema::dropIfExists('page_articles');
-        Schema::dropIfExists('page_twitch');
-        Schema::dropIfExists('user_role');
-        Schema::dropIfExists('links');
-        Schema::dropIfExists('types');
-        Schema::dropIfExists('rights');
-        Schema::dropIfExists('roles');
-        Schema::dropIfExists('articles');
-        Schema::dropIfExists('pages');
-
+    
         // Create 'pages' table
         Schema::create('pages', function (Blueprint $table) {
             $table->increments('id_page');
@@ -39,22 +29,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        // Create 'roles' table
-        Schema::create('roles', function (Blueprint $table) {
-            $table->increments('id_role');
-            $table->string('name')->unique(); 
-            $table->string('description'); 
-            $table->timestamps(); 
-        });
-
-        // Create 'rights' table
-        Schema::create('rights', function (Blueprint $table) {
-            $table->increments('id_right');
-            $table->string('name')->unique(); 
-            $table->string('description'); 
-            $table->timestamps(); 
-        });
-
+     
         // Create 'types' table
         Schema::create('types', function (Blueprint $table) {
             $table->increments('id_type');
@@ -69,13 +44,6 @@ return new class extends Migration
             $table->timestamps(); 
         });
 
-        // Create 'user_role' table for relationship between users and roles
-        Schema::create('user_role', function (Blueprint $table) {
-            $table->integer('id_user'); 
-            $table->integer('id_right'); 
-            $table->string('name'); 
-            $table->timestamps(); 
-        });
 
         // Create 'user_articles' table for relationship between users and articles
         Schema::create('user_articles', function (Blueprint $table) {
@@ -93,9 +61,9 @@ return new class extends Migration
         });
 
         // Create 'page_twitch' table for relationship between pages and Twitch
-        Schema::create('page_twitch', function (Blueprint $table) {
+        Schema::create('page_link', function (Blueprint $table) {
             $table->integer('id_page'); 
-            $table->integer('id_twitch'); 
+            $table->integer('id_link'); 
             $table->timestamps(); 
         });
     }
@@ -106,14 +74,11 @@ return new class extends Migration
     public function down(): void
     {
         // Drop all created tables
-        Schema::dropIfExists('page_twitch');
+        Schema::dropIfExists('page_links');
         Schema::dropIfExists('page_articles');
-        Schema::dropIfExists('user_articles');
-        Schema::dropIfExists('user_role'); 
-        Schema::dropIfExists('twitch');
+        Schema::dropIfExists('user_articles'); 
+        Schema::dropIfExists('links');
         Schema::dropIfExists('types');
-        Schema::dropIfExists('rights');
-        Schema::dropIfExists('roles');
         Schema::dropIfExists('articles');
         Schema::dropIfExists('pages');
     }
