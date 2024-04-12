@@ -22,8 +22,6 @@ class EsportData extends Seeder
     {
         Article::factory()->count(10)->create();
         Page::factory()->count(10)->create();
-        Rights::factory()->count(10)->create();
-        Roles::factory()->count(10)->create();
         Types::factory()->count(10)->create();
         User::factory()->count(10)->create();
         Links::factory()->count(10)->create();

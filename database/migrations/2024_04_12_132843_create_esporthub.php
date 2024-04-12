@@ -74,7 +74,7 @@ return new class extends Migration
     public function down(): void
     {
         // Drop all created tables
-        Schema::dropIfExists('page_links');
+        Schema::dropIfExists('page_link');
         Schema::dropIfExists('page_articles');
         Schema::dropIfExists('user_articles'); 
         Schema::dropIfExists('links');
