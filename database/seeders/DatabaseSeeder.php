@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            RoleAndPermissionSeeder::class,
+            PermissionSeeder::class,
             RoleSeeder::class,
             SuperAdminSeeder::class,
             // EsportData::class,
