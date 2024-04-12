@@ -19,6 +19,7 @@ class VerifyCsrfToken extends Middleware
         'role/create',
         'type/create',
         'user/create',
-        'auth/register'
+        'register',
+        'login',
     ];
 }
