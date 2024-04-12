@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\PageController;
@@ -25,9 +26,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// GET 
+Route::post('/auth/register', [AuthController::class, 'register']);
+
 Route::get('/articles', [ArticleController::class, 'getAllArticles']); 
 Route::get('/article', [ArticleController::class, 'getOneArticle']); 
+Route::post('/article/create', [ArticleController::class, 'createArticle']); 
 
 Route::get('/pages', [PageController::class, 'getAllPages']);
 Route::get('/page', [PageController::class, 'getOnePage']); 
@@ -38,19 +41,22 @@ Route::get('/user', [UserController::class, 'getOneUser']);
 
 Route::get('/types', [TypeController::class, 'getAllTypes']);
 Route::get('/type', [TypeController::class, 'getOneType']);
+Route::post('/type/create', [TypeController::class, 'createType']); 
 
 Route::get('/rights', [RightController::class, 'getAllRights']);
 Route::get('/right', [RightController::class, 'getOneRight']);
+Route::post('/right/create', [RightController::class, 'createRight']); 
 
 Route::get('/roles', [RoleController::class, 'getAllRoles']);
 Route::get('/role', [RoleController::class, 'getOneRole']);
+Route::post('/role/create', [RoleController::class, 'createRole']); 
 
 Route::get('/links', [LinkController::class, 'getAllLinks']);
 Route::get('/link', [LinkController::class, 'getOneLink']);
+Route::post('/link/create', [LinkController::class, 'createLink']); 
 
 
 
-// ROUTE NEED TO BE DONE 
 
 
 

@@ -28,7 +28,7 @@ class PageController extends Controller
     }
 
     public function createPage(Request $request) {
-        @csrf
+        
         $name = $request->input('name');
         $header = $request->input('header');
         $description = $request->input('description');
