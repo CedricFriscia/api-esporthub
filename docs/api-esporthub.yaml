@@ -1,0 +1,812 @@
+openapi: "3.0.0"
+info:
+  title: api-esporthub
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8000
+
+tags:
+  - name: Auth
+    description: Route de connexion
+  - name: Page
+    description: Route de connexion
+  - name: Article
+    description: Route de connexion
+  - name: Role
+    description: Route de connexion
+
+paths:
+  /login:
+    post:
+      tags:
+        - Auth
+      summary: connexion
+      operationId: login.post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+        required: true
+      responses:
+        200:
+          description: Succesful responses
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginRequest"
+        400:
+          description: Bad request
+  /signup:
+    post:
+      tags:
+        - Auth
+      summary: inscription
+      operationId: signup.post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SignupRequest"
+        required: true
+      responses:
+        200:
+          description: Succesful signup responses
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SignupRequest"
+        400:
+          description: Bad request
+  /logout:
+    post:
+      tags:
+        - Auth
+      summary: deconnection
+      operationId: logout.post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LogoutRequest"
+        required: true
+      responses:
+        200:
+          description: Succesful logout responses
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LogoutRequest"
+        400:
+          description: Bad request
+  /page/{page_id}:
+    get:
+      parameters:
+        - name: page_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Numeric ID of the page to get
+      tags:
+        - Page
+      summary: One Page
+      operationId: page.get
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PageRequest"
+        required: true
+      responses:
+        200:
+          description: Succesful fetch page informations
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PageResponse"
+        400:
+          description: Bad request
+  /pages:
+    get:
+      tags:
+        - Page
+      summary: All Pages
+      operationId: pages.get
+      responses:
+        200:
+          description: Successful fetch page informations
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PageResponse"
+        400:
+          description: Bad request
+  /page/edit:
+    put:
+      parameters:
+        - name: page_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Numeric ID of the page to get
+      tags:
+        - Page
+      summary: Delete Page
+      operationId: pages.delete
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PageEditRequest"
+        required: true
+      responses:
+        200:
+          description: Successful delete page
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PageResponse"
+        400:
+          description: Bad request
+  /page/delete:
+    delete:
+      parameters:
+        - name: page_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Numeric ID of the page to get
+      tags:
+        - Page
+      summary: Delete Page
+      operationId: pages.delete
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PageRequest"
+        required: true
+      responses:
+        200:
+          description: Successful delete page
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PageResponse"
+        400:
+          description: Bad request
+  /artice/{article_id}:
+    get:
+      parameters:
+        - name: article_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Numeric ID of the page to get
+      tags:
+        - Article
+      summary: One Article
+      operationId: article.get
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ArticleRequest"
+        required: true
+      responses:
+        200:
+          description: Succesful fetch article informations
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ArticleResponse"
+        400:
+          description: Bad request
+  /articles:
+    get:
+      tags:
+        - Article
+      summary: All Articles
+      operationId: articles.get
+      responses:
+        200:
+          description: Successful fetch artilces informations
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ArticleResponse"
+        400:
+          description: Bad request
+  /article/edit:
+    put:
+      parameters:
+        - name: article_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Numeric ID of the article to get
+      tags:
+        - Article
+      summary: Delete Article
+      operationId: Articles.edit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ArticleEditRequest"
+        required: true
+      responses:
+        200:
+          description: Successful delete Article
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ArticleResponse"
+        400:
+          description: Bad request
+  /article/delete:
+    delete:
+      parameters:
+        - name: article_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Numeric ID of the article to get
+      tags:
+        - Article
+      summary: Delete Article
+      operationId: Articles.delete
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ArticleRequest"
+        required: true
+      responses:
+        200:
+          description: Successful delete Article
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ArticleResponse"
+        400:
+          description: Bad request
+  /role/{role_id}:
+    get:
+      parameters:
+        - name: role_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Numeric ID of the role to get
+      tags:
+        - Role
+      summary: One Role
+      operationId: Role.get
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RoleRequest"
+        required: true
+      responses:
+        200:
+          description: Succesful fetch Role informations
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RoleResponse"
+        400:
+          description: Bad request
+  /roles:
+    get:
+      tags:
+        - Role
+      summary: All Roles
+      operationId: Roles.get
+      responses:
+        200:
+          description: Successful fetch Role informations
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RoleResponse"
+        400:
+          description: Bad request
+  /role/edit:
+    put:
+      parameters:
+        - name: Role_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Numeric ID of the Role to get
+      tags:
+        - Role
+      summary: Delete Role
+      operationId: Roles.delete
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RoleEditRequest"
+        required: true
+      responses:
+        200:
+          description: Successful delete Role
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RoleResponse"
+        400:
+          description: Bad request
+  /role/delete:
+    delete:
+      parameters:
+        - name: Role_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Numeric ID of the Role to get
+      tags:
+        - Role
+      summary: Delete Role
+      operationId: Roles.delete
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RoleRequest"
+        required: true
+      responses:
+        200:
+          description: Successful delete Role
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RoleResponse"
+        400:
+          description: Bad request
+  /right/{right_id}:
+    get:
+      parameters:
+        - name: right_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Numeric ID of the Right to get
+      tags:
+        - Right
+      summary: One Right
+      operationId: Right.get
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RightRequest"
+        required: true
+      responses:
+        200:
+          description: Succesful fetch Right informations
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RightResponse"
+        400:
+          description: Bad request
+  /right:
+    get:
+      tags:
+        - Right
+      summary: All Rights
+      operationId: Rights.get
+      responses:
+        200:
+          description: Successful fetch Right informations
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RightResponse"
+        400:
+          description: Bad request
+  /right/edit:
+    put:
+      parameters:
+        - name: right_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Numeric ID of the Right to get
+      tags:
+        - Right
+      summary: Delete Right
+      operationId: Rights.edit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RightEditRequest"
+        required: true
+      responses:
+        200:
+          description: Successful delete Right
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RightResponse"
+        400:
+          description: Bad request
+  /right/delete:
+    delete:
+      parameters:
+        - name: right_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Numeric ID of the Right to get
+      tags:
+        - Right
+      summary: Delete Right
+      operationId: Rights.delete
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RightRequest"
+        required: true
+      responses:
+        200:
+          description: Successful delete Right
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RightResponse"
+        400:
+          description: Bad request
+  /twitch/{twitch_id}:
+    get:
+      parameters:
+        - name: Twitch_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Numeric ID of the Twitch to get
+      tags:
+        - Twitch
+      summary: One Twitch
+      operationId: Twitch.get
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TwitchRequest"
+        required: true
+      responses:
+        200:
+          description: Succesful fetch Twitch informations
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TwitchResponse"
+        400:
+          description: Bad request
+  /twitch:
+    get:
+      tags:
+        - Twitch
+      summary: All Twitchs
+      operationId: Twitchs.get
+      responses:
+        200:
+          description: Successful fetch Twitch informations
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TwitchResponse"
+        400:
+          description: Bad request
+  /twitch/edit:
+    put:
+      parameters:
+        - name: Twitch_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Numeric ID of the Twitch to get
+      tags:
+        - Twitch
+      summary: Delete Twitch
+      operationId: Twitchs.edit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TwitchEditRequest"
+        required: true
+      responses:
+        200:
+          description: Successful delete Twitch
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TwitchResponse"
+        400:
+          description: Bad request
+  /twitch/delete:
+    delete:
+      parameters:
+        - name: Twitch_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Numeric ID of the Twitch to get
+      tags:
+        - Twitch
+      summary: Delete Twitch
+      operationId: Twitchs.delete
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TwitchRequest"
+        required: true
+      responses:
+        200:
+          description: Successful delete Twitch
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TwitchResponse"
+        400:
+          description: Bad request
+  /type/{type_id}:
+    get:
+      parameters:
+        - name: Type_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Numeric ID of the Type to get
+      tags:
+        - Type
+      summary: One Type
+      operationId: Type.get
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TypeRequest"
+        required: true
+      responses:
+        200:
+          description: Succesful fetch Type informations
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TypeResponse"
+        400:
+          description: Bad request
+  /type:
+    get:
+      tags:
+        - Type
+      summary: All Types
+      operationId: Types.get
+      responses:
+        200:
+          description: Successful fetch Type informations
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TypeResponse"
+        400:
+          description: Bad request
+  /type/edit:
+    put:
+      parameters:
+        - name: Type_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Numeric ID of the Type to get
+      tags:
+        - Type
+      summary: Delete Type
+      operationId: Types.edit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TypeEditRequest"
+        required: true
+      responses:
+        200:
+          description: Successful delete Type
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TypeResponse"
+        400:
+          description: Bad request
+  /type/delete:
+    delete:
+      parameters:
+        - name: Type_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Numeric ID of the Type to get
+      tags:
+        - Type
+      summary: Delete Type
+      operationId: Types.delete
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TypeRequest"
+        required: true
+      responses:
+        200:
+          description: Successful delete Type
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TypeResponse"
+        400:
+          description: Bad request
+
+components:
+  schemas:
+    LoginRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    SignupRequest:
+      type: object
+      properties:
+        email:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+    LogoutRequest:
+      type: object
+      properties:
+        email:
+          type: string
+    PageRequest:
+      type: object
+      properties:
+        page_id:
+          type: number
+    PageResponse:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        header:
+          type: string
+    PageEditRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        header:
+          type: string
+    ArticleRequest:
+      type: object
+      properties:
+        article_id:
+          type: string
+    ArticleResponse:
+      type: object
+      properties:
+        name:
+          type: string
+        content:
+          type: string
+    ArticleEditRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        content:
+          type: string
+    RoleRequest:
+      type: object
+      properties:
+        role_id:
+          type: string
+    RoleResponse:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    RoleEditRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    RightRequest:
+      type: object
+      properties:
+        right_id:
+          type: string
+    RightResponse:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    RightEditRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    TwitchRequest:
+      type: object
+      properties:
+        twitch_id:
+          type: number
+    TwitchResponse:
+      type: object
+      properties:
+        name:
+          type: string
+
+    TwitchEditRequest:
+      type: object
+      properties:
+        name:
+          type: string
+    TypeRequest:
+      type: object
+      properties:
+        type_id:
+          type: number
+    TypeResponse:
+      type: object
+      properties:
+        name:
+          type: string
+
+    TypeEditRequest:
+      type: object
+      properties:
+        name:
+          type: string
